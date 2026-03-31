@@ -29,6 +29,46 @@
 
       <div class="card">
         <div class="card-header">
+          <h3 class="card-title">{{ t('submittedRestocking.title') }} ({{ restockingOrders.length }})</h3>
+        </div>
+        <div v-if="restockingOrders.length === 0" class="restocking-empty">
+          {{ t('submittedRestocking.empty') }}
+        </div>
+        <div v-else class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>{{ t('submittedRestocking.table.orderNumber') }}</th>
+                <th>{{ t('submittedRestocking.table.items') }}</th>
+                <th>{{ t('submittedRestocking.table.totalValue') }}</th>
+                <th>{{ t('submittedRestocking.table.orderDate') }}</th>
+                <th>{{ t('submittedRestocking.table.expectedDelivery') }}</th>
+                <th>{{ t('submittedRestocking.table.status') }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="order in restockingOrders" :key="order.id">
+                <td><strong>{{ order.order_number }}</strong></td>
+                <td>
+                  <div class="restock-items-list">
+                    <div v-for="item in order.items" :key="item.item_sku" class="restock-item-entry">
+                      <span>{{ item.item_name }} &times;{{ item.quantity }}</span>
+                      <span class="lead-time-badge">{{ item.lead_time_days }} {{ t('submittedRestocking.days') }}</span>
+                    </div>
+                  </div>
+                </td>
+                <td><strong>{{ currencySymbol }}{{ order.total_value.toLocaleString() }}</strong></td>
+                <td>{{ formatDate(order.order_date) }}</td>
+                <td>{{ formatDate(order.expected_delivery) }}</td>
+                <td><span class="badge info">{{ order.status }}</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
           <h3 class="card-title">{{ t('orders.allOrders') }} ({{ orders.length }})</h3>
         </div>
         <div class="table-container">
@@ -95,6 +135,7 @@ export default {
     const loading = ref(true)
     const error = ref(null)
     const orders = ref([])
+    const restockingOrders = ref([])
 
     // Use shared filters
     const {
@@ -109,14 +150,17 @@ export default {
       try {
         loading.value = true
         const filters = getCurrentFilters()
-        const fetchedOrders = await api.getOrders(filters)
+        const [fetchedOrders, fetchedRestocking] = await Promise.all([
+          api.getOrders(filters),
+          api.getRestockingOrders()
+        ])
 
-        // Sort orders by order_date (earliest first)
         orders.value = fetchedOrders.sort((a, b) => {
           const dateA = new Date(a.order_date)
           const dateB = new Date(b.order_date)
           return dateA - dateB
         })
+        restockingOrders.value = fetchedRestocking
       } catch (err) {
         error.value = 'Failed to load orders: ' + err.message
       } finally {
@@ -165,7 +209,8 @@ export default {
       formatDate,
       currencySymbol,
       translateProductName,
-      translateCustomerName
+      translateCustomerName,
+      restockingOrders
     }
   }
 }
@@ -275,5 +320,32 @@ export default {
 .item-meta {
   font-size: 0.813rem;
   color: #64748b;
+}
+.restocking-empty {
+  padding: 2rem;
+  text-align: center;
+  color: #64748b;
+}
+
+.restock-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.restock-item-entry {
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+}
+
+.lead-time-badge {
+  background: #e0e7ff;
+  color: #3730a3;
+  font-size: 0.7rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  margin-left: 0.5rem;
+  white-space: nowrap;
 }
 </style>

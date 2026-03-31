@@ -6,6 +6,7 @@ export default {
     orders: '注文',
     finance: '財務',
     demandForecast: '需要予測',
+    restocking: '補充',
     companyName: '触媒コンポーネンツ',
     subtitle: '在庫管理システム'
   },
@@ -379,4 +380,42 @@ export default {
     'Stellar Components Ltd': 'ステラコンポーネンツ',
     'Dynamic Systems Ltd': 'ダイナミックシステムズ'
   }
+,
+  restocking: {
+    title: '補充',
+    description: '需要予測に基づいて予算を割り当て、補充注文を送信します',
+    budgetSlider: '利用可能予算',
+    allocated: '割り当て済み',
+    remaining: '残り',
+    recommendations: '推奨補充アイテム',
+    priorityNote: '緊急度順：需要増加優先、次にギャップの大きさ',
+    fitsInBudget: '予算内',
+    overBudget: '予算超過',
+    placeOrder: '注文する',
+    orderPlaced: '注文{orderNumber}が正常に送信されました',
+    noItemsFit: '現在の予算に収まるアイテムがありません',
+    table: {
+      sku: 'SKU',
+      item: 'アイテム',
+      trend: 'トレンド',
+      quantity: '数量',
+      unitCost: '単価',
+      lineCost: 'ラインコスト',
+      status: 'ステータス'
+    }
+  },
+  submittedRestocking: {
+    title: '送信済み補充注文',
+    empty: 'まだ補充注文は送信されていません',
+    leadTime: 'リードタイム',
+    days: '日',
+    table: {
+      orderNumber: '注文番号',
+      items: 'アイテム',
+      totalValue: '合計金額',
+      orderDate: '注文日',
+      expectedDelivery: '予定納期',
+      status: 'ステータス'
+    }
+  },
 }

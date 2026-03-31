@@ -6,7 +6,8 @@
     "current_demand": 300,
     "forecasted_demand": 450,
     "trend": "increasing",
-    "period": "Next 30 days"
+    "period": "Next 30 days",
+    "unit_cost": 12.5
   },
   {
     "id": "2",
@@ -15,7 +16,8 @@
     "current_demand": 150,
     "forecasted_demand": 152,
     "trend": "stable",
-    "period": "Next 30 days"
+    "period": "Next 30 days",
+    "unit_cost": 45
   },
   {
     "id": "3",
@@ -24,7 +26,8 @@
     "current_demand": 500,
     "forecasted_demand": 600,
     "trend": "increasing",
-    "period": "Next 30 days"
+    "period": "Next 30 days",
+    "unit_cost": 8.75
   },
   {
     "id": "4",
@@ -33,7 +36,8 @@
     "current_demand": 50,
     "forecasted_demand": 35,
     "trend": "decreasing",
-    "period": "Next 30 days"
+    "period": "Next 30 days",
+    "unit_cost": 285
   },
   {
     "id": "5",
@@ -42,7 +46,8 @@
     "current_demand": 800,
     "forecasted_demand": 950,
     "trend": "increasing",
-    "period": "Next 30 days"
+    "period": "Next 30 days",
+    "unit_cost": 6.25
   },
   {
     "id": "6",
@@ -51,33 +56,37 @@
     "current_demand": 120,
     "forecasted_demand": 121,
     "trend": "stable",
-    "period": "Next 30 days"
+    "period": "Next 30 days",
+    "unit_cost": 67.5
   },
   {
     "id": "7",
     "item_sku": "PSU-501",
     "item_name": "5V 10A Switching Power Supply",
     "current_demand": 250,
-    "forecasted_demand": 252,
-    "trend": "stable",
-    "period": "Next 30 days"
+    "forecasted_demand": 320,
+    "trend": "increasing",
+    "period": "Next 30 days",
+    "unit_cost": 18.99
   },
   {
     "id": "8",
     "item_sku": "SNR-420",
     "item_name": "Temperature Sensor Module",
     "current_demand": 180,
-    "forecasted_demand": 182,
+    "forecasted_demand": 177,
     "trend": "stable",
-    "period": "Next 30 days"
+    "period": "Next 30 days",
+    "unit_cost": 22.4
   },
   {
     "id": "9",
     "item_sku": "CTL-330",
     "item_name": "Logic Controller Board",
-    "current_demand": 95,
-    "forecasted_demand": 96,
-    "trend": "stable",
-    "period": "Next 30 days"
+    "current_demand": 90,
+    "forecasted_demand": 140,
+    "trend": "increasing",
+    "period": "Next 30 days",
+    "unit_cost": 125
   }
 ]
